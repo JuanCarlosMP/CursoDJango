@@ -13,6 +13,42 @@
         </style>
     </head>
     <body>
+
+        <navbar>
+            <div class='w-full py-3 border-b'>
+      
+              <div class='flex justify-between px-20 items-center font-semibold'>
+                <div>
+                  <h1 class="text-2xl">LOGO</h1>
+                </div>
+                <div class='flex xl:gap-10 md:gap-8  gap-2'>
+                  <a href="">Home</a>
+                  <a href="">Work</a>
+                  <a href="">About</a>
+                  <a href="">Services</a>
+                  <a href="">Testimonial</a>
+                </div>
+                <div>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class='py-2 px-6 bg-black text-white rounded-3xl font-semibold'>Logout</button>
+                        </form>
+                        
+                    {% else %}
+                        <a href="{% url 'login' %}" class='py-2 px-6 bg-black text-white rounded-3xl font-semibold'>Login</a>
+                    {% endif %}                              
+                </div>
+              </div>
+              
+            </div>
+          </navbar>
+
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% else %}
+            <a href="{% url 'login' %}"></a>
+        {% endif %}
         <div class="container mx-auto px-4">
             
             {% block content %}

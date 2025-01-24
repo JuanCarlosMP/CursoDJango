@@ -52,18 +52,14 @@
         {{product.description}}
       </p>
   
-      <form class="mt-4 flex gap-4">
+      <form action="{% url 'add_order_product' %}" method="post" class="mt-4 flex gap-4">
+        {% csrf_token %}
+        <input type="hidden" name="product" value="{{ product.id }}">
         <button
+          type="submit"
           class="block w-full rounded bg-gray-100 px-4 py-3 text-sm font-medium text-gray-900 transition hover:scale-105"
         >
-          Add to Cart
-        </button>
-  
-        <button
-          type="button"
-          class="block w-full rounded bg-gray-900 px-4 py-3 text-sm font-medium text-white transition hover:scale-105"
-        >
-          Buy Now
+          Add to Order
         </button>
       </form>
     </div>
